@@ -6,7 +6,7 @@ package _00_Binary_Conversion;
  * A decimal number is a number whose digits are a number from 0-9
  * A binary number is a number whose digits are either 1 or 0.
  * For example,
- *      1906    // 4-digit decimal number
+ *      1906    // 4-digit decimal number   
  *      1010    // 4-digit binary number
  * 
  * Each digit in a decimal number represents a power of 10, meaning
