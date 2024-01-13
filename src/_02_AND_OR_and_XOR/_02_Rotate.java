@@ -29,11 +29,21 @@ import org.junit.jupiter.api.Test;
 public class _02_Rotate {
     
     int rotateLeft(int value, int rotateAmount) {
-        return -1;
+
+    	int x = value<<rotateAmount;
+    	int y = value>>>32-rotateAmount;
+    	int sol = x+y;
+    	
+        return sol;
     }
     
     int rotateRight(int value, int rotateAmount) {
-        return -1;
+        
+    	int x = value>>>rotateAmount;
+    	int y = value<<32-rotateAmount;
+    	int sol = x+y;
+    	
+    	return sol;
     }
     
     @Test
