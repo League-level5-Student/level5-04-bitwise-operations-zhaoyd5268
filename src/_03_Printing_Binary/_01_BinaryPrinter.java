@@ -26,23 +26,18 @@ System.out.println();
   
     public static void printShortBinary(short s) {
         // Create 2 byte variables
-    	Byte x;
+    	Byte x; 
     	Byte y;
         // Use bit shifting and masking (&) to save the first
         // 8 bits of s in one byte, and the second 8 bits of
         // s in the other byte
-    	for(int i = 7; i > -1; i--) {
-    		x = (byte) (s>>i);
-        	x = (byte) (x & 1);
-        	System.out.print(x);
-    	}
-    	System.out.println();
-    	for(int i = 7; i > -1; i--) {
-    		y = (byte) (s<<i);
-    		y = (byte)(y & 1);
-        	System.out.print(y);
-    	}
-
+    	
+    	x = (byte) (s & 255);
+    	y = (byte) (s>>8);
+    	
+    	
+    	printByteBinary(x);
+    	printByteBinary(y);
         // Call printByteBinary twice using the two bytes
         // Make sure they are in the correct order
     }
@@ -53,17 +48,12 @@ System.out.println();
         // Use bit shifting and masking (&) to save the first
         // 16 bits of i in one short, and the second 16 bits of
         // i in the other short
-    	for(int e = 15; e > -1; e--) {
-    		x = (short) (i>>e);
-        	x = (short) (x & 1);
-        	System.out.print(x);
-    	}
-    	System.out.println();
-    	for(int e = 15; e > -1; e--) {
-    		y = (short) (i<<e);
-    		y = (short)(y & 1);
-        	System.out.print(y);
-    	}
+    	x = (short) (i & 32767);
+    	y = (short) (i>>16);
+    	
+    	printShortBinary(x);
+    	printShortBinary(y);
+    	
         // Call printShortBinary twice using the two short variables
         // Make sure they are in the correct order
     }
@@ -73,8 +63,8 @@ System.out.println();
     }
 
     public static void main(String[] args) {
-        printByteBinary((byte) 295727);
-        printShortBinary((short) 56);
-        printIntBinary(5);
+        printByteBinary((byte) 295);
+        printShortBinary((short) 30000);
+        printIntBinary(2147483647);
     }
 }

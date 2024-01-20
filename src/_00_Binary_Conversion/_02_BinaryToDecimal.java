@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
  *   010110 in binary is equal to 22 in decimal!
  */
 public class _02_BinaryToDecimal {
-    int convertBinaryStringToDecimalInt(String binStr) {
+    public int convertBinaryStringToDecimalInt(String binStr) {
     	int[] multipliers = new int[binStr.length()];
 		int[] numSet = new int[binStr.length()];
 		int solution = 0;
