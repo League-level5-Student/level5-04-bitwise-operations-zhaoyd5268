@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -55,43 +56,43 @@ public class _02_HexadecimalPrinter implements ActionListener {
 	 */
 	String binaryToHex(String binaryStr) {
 		int dividend = Integer.parseInt(binaryToDec(binaryStr));
-		int multiplier = 1;
-		int[] remainders = new int[binaryStr.length()];
-		String[] solset = new String[remainders.length];
-		for (int i = 0; i < remainders.length; i++) {
-			remainders[i] = multiplier * (dividend % 16);
-			dividend = dividend / 16;
-			if (remainders[i] != 0) {
-				multiplier = multiplier * 10;
-			}
-			System.out.println(remainders[i]);
+		System.out.println("Binary StringP: " + binaryStr);
+		System.out.println("dividend:   " + dividend);
+		int[] remainders = new int[8];
+		for (int i = remainders.length - 1; i > 0; i--) {
+			remainders[i] = dividend % 16;
+			dividend = (dividend - remainders[i]) / 16;
+			System.out.println(remainders[i] + ", " + dividend);
 		}
-
+		ArrayList<String> solset = new ArrayList<String>();
 		for (int i = 0; i < remainders.length; i++) {
 			if (remainders[i] > 9) {
 				if (remainders[i] == 10) {
-					solset[i] = "A";
+					solset.add("a");
 				} else if (remainders[i] == 11) {
-					solset[i] = "B";
+					solset.add("b");
 				} else if (remainders[i] == 12) {
-					solset[i] = "C";
+					solset.add("c");
 				} else if (remainders[i] == 13) {
-					solset[i] = "D";
+					solset.add("d");
 				} else if (remainders[i] == 14) {
-					solset[i] = "E";
+					solset.add("e");
 				} else if (remainders[i] == 15) {
-					solset[i] = "F";
+					solset.add("f");
 				}
-
 			} else {
-				solset[i] = remainders[i]+"";
+				if (remainders[i] != 0 || solset.size() != 0) {
+					System.out.println(":)");
+					solset.add(remainders[i] + "");
+				}
 			}
 		}
 		String sol = "";
-		for(int i = solset.length; i > 0; i--) {
-			sol = sol+solset[i];
+		for (int i = 0; i < solset.size(); i++) {
+			sol = sol + solset.get(i);
+			System.out.println(i + " of solst: " + solset.get(i));
 		}
-		sol.replace("0", "");
+		System.out.println("Solution after being put together: " + sol);
 		return sol;
 	}
 
@@ -105,11 +106,15 @@ public class _02_HexadecimalPrinter implements ActionListener {
 	 * ASCII values are exactly 8 bits so return '-' if there isn't.
 	 */
 	String binaryToAscii(String binaryStr) {
+		int x = Integer.parseInt(binaryToDec(binaryStr));
+		System.out.println("binary str:" + binaryStr);
+		char solution = (char) x;
+
 		if (binaryStr.length() != 8) {
 			return "-";
 		}
 
-		return "-";
+		return solution + "";
 	}
 
 	public static void main(String[] args) {

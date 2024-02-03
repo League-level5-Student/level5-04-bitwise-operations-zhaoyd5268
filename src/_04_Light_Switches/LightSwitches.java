@@ -1,6 +1,7 @@
 package _04_Light_Switches;
 
 import java.awt.BasicStroke;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -54,16 +55,28 @@ public class LightSwitches implements GameControlScene {
      * This method should check if the specified light is on, example:
      * index = 6        // return true if pink is on (bit 6 == 1)
      */
+    
     boolean isLightOn(int index) {
-        return false;
+    	int mask = (int) Math.pow(2, index);
+    	System.out.println(mask + " :) froggie eeeee");
+    	int bit = lightsOnOff & mask;
+    	
+    	if (bit == mask) {
+    		return true;
+    	} else {
+            return false;
+    	}
+ 
+
     }
     
     /*
      * This method should only turn on 1 light, example:
-     * index = 4        // turn off yellow only (set bit 4 = 1)
+     * index = 4        // turn on yellow only (set bit 4 = 1)
      */
     void turnLightOn(int index) {
-        
+    	int adder = (int) Math.pow(2, index);
+    	lightsOnOff = index | adder;
     }
     
     /*
@@ -71,7 +84,8 @@ public class LightSwitches implements GameControlScene {
      * index = 0        // turn off blue only (set bit 0 = 0)
      */
     void turnLightOff(int index) {
-        
+    	int subtracter = (int) Math.pow(2, index);
+    	lightsOnOff = index ^ subtracter;
     }
     
     /*
@@ -79,7 +93,7 @@ public class LightSwitches implements GameControlScene {
      * lightsBitmap = 0b01100110  // lights 1, 2, 5, 6 on
      */
     void turnMultiLightsOn(int lightsBitmap) {
-        
+        lightsOnOff = lightsOnOff | lightsBitmap;
     }
     
     /*
@@ -87,7 +101,7 @@ public class LightSwitches implements GameControlScene {
      * lightsBitmap = 0b10000001  // lights 0, 7 off
      */
     void turnMultiLightsOff(int lightsBitmap) {
-        
+    	lightsOnOff = lightsOnOff ^ lightsBitmap;
     }
     
     /*
@@ -100,10 +114,11 @@ public class LightSwitches implements GameControlScene {
      *                               orange(3) and yellow(4) on
      */
     void toggleLights(int lightsBitmap) {
-        
+        lightsOnOff = lightsOnOff ^ lightsBitmap;
     }
     
     void runLightSequence1() {
+    	System.out.println("sequence 1 :)");
         workQueue.add(()->turnMultiLightsOff(0xFF));
         workQueue.add(()->turnLightOn(0));
         workQueue.add(()->delayMs(200));
