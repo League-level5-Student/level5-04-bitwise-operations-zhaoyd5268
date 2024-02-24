@@ -1,7 +1,7 @@
 package _00_Binary_Conversion;
 
 /*
- * Goal: Understand binary numbers           
+ * Goal: Understand binary numbers                  
  * 
  * A decimal number is a number whose digits are a number from 0-9
  * A binary number is a number whose digits are either 1 or 0.
